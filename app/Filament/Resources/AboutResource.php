@@ -22,82 +22,79 @@ class AboutResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Tabs::make('About')
-                    ->tabs([
-                        Forms\Components\Tabs\Tab::make('Basic Information')
+                Forms\Components\Section::make('Basic Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('name')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('base')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('main_title')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('desc')
+                            ->label('Description')
+                            ->rows(3)
+                            ->maxLength(1000),
+                        Forms\Components\FileUpload::make('image')
+                            ->image()
+                            ->directory('about')
+                            ->required(),
+                        Forms\Components\FileUpload::make('image_2')
+                            ->image()
+                            ->directory('about')
+                            ->nullable(),
+                        Forms\Components\FileUpload::make('cv')
+                            ->acceptedFileTypes(['application/pdf'])
+                            ->directory('cv')
+                            ->nullable(),
+                    ])
+                    ->columns(2)
+                    ->collapsible(),
+
+                Forms\Components\Section::make('Typed Titles')
+                    ->schema([
+                        Forms\Components\Repeater::make('title')
                             ->schema([
-                                Forms\Components\TextInput::make('name')
+                                Forms\Components\TextInput::make('value')
                                     ->required()
+                                    ->label('Title')
                                     ->maxLength(255),
-                                Forms\Components\TextInput::make('main_title')
-                                    ->required()
-                                    ->maxLength(255),
-                                Forms\Components\Textarea::make('desc')
-                                    ->label('Description')
-                                    ->rows(3)
-                                    ->maxLength(1000),
+                            ])
+                            ->columns(1)
+                            ->defaultItems(2)
+                    ])
+                    ->collapsible(),
 
-                                Forms\Components\FileUpload::make('image')
-                                    ->image()
-                                    ->directory('about')
-                                    ->required(),
-
-                                Forms\Components\FileUpload::make('image_2')
-                                    ->image()
-                                    ->directory('about')
-                                    ->nullable(),
-
-                                Forms\Components\FileUpload::make('cv')
-                                    ->acceptedFileTypes(['application/pdf'])
-                                    ->directory('cv')
-                                    ->nullable(),
-                            ]),
-
-                        Forms\Components\Tabs\Tab::make('Typed Titles')
-                            ->schema([
-                                Forms\Components\Repeater::make('title')
-                                    ->schema([
-                                        Forms\Components\TextInput::make('value')
-                                            ->required()
-                                            ->label('Title')
-                                            ->maxLength(255),
-                                    ])
-                                    ->columns(1)
-                                    ->defaultItems(2)
-                            ]),
-
-                        Forms\Components\Tabs\Tab::make('Contact Information')
-                            ->schema([
-                                Forms\Components\TextInput::make('email')
-                                    ->email()
-                                    ->required()
-                                    ->maxLength(255),
-
-                                Forms\Components\TextInput::make('phone')
-                                    ->tel()
-                                    ->required()
-                                    ->maxLength(255),
-
-                                Forms\Components\Textarea::make('address')
-                                    ->required()
-                                    ->rows(3),
-
-                                Forms\Components\DatePicker::make('birth_date')
-                                    ->required(),
-
-                                Forms\Components\TextInput::make('education')
-                                    ->required()
-                                    ->maxLength(255),
-
-                                Forms\Components\Select::make('freelance_status')
-                                    ->options([
-                                        'available' => 'Available',
-                                        'busy' => 'Busy',
-                                        'not-available' => 'Not Available',
-                                    ])
-                                    ->required(),
-                            ]),
-                    ]),
+                Forms\Components\Section::make('Contact Information')
+                    ->schema([
+                        Forms\Components\TextInput::make('email')
+                            ->email()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\TextInput::make('phone')
+                            ->tel()
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Textarea::make('address')
+                            ->required()
+                            ->rows(3),
+                        Forms\Components\DatePicker::make('birth_date')
+                            ->required(),
+                        Forms\Components\TextInput::make('education')
+                            ->required()
+                            ->maxLength(255),
+                        Forms\Components\Select::make('freelance_status')
+                            ->options([
+                                'available' => 'Available',
+                                'busy' => 'Busy',
+                                'not-available' => 'Not Available',
+                            ])
+                            ->required(),
+                    ])
+                    ->columns(2)
+                    ->collapsible(),
             ]);
     }
 
@@ -107,12 +104,9 @@ class AboutResource extends Resource
             ->columns([
                 Tables\Columns\TextColumn::make('name')
                     ->searchable(),
-
                 Tables\Columns\ImageColumn::make('image'),
-
                 Tables\Columns\TextColumn::make('email')
                     ->searchable(),
-
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable(),
