@@ -32,8 +32,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/leaflet.css') }}" />
     <link rel="stylesheet" href="{{ asset('assets/css/aos.css') }}" />
-    <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/style.css') }}" />
-
+    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ route('dynamic.css') }}">
     <title>@yield('title', $siteSettings->site_name ?? 'Personal Web')</title>
 </head>
 
