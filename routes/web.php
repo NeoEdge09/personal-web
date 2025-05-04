@@ -22,3 +22,6 @@ Route::post('/blog/comment/{blogId}', [BlogController::class, 'storeComment'])->
 
 // Contact form submission
 Route::post('/contact', [ContactController::class, 'store'])->name('contact.store');
+
+Route::get('/css/dynamic.css', [App\Http\Controllers\DynamicStyleController::class, 'css'])
+    ->name('dynamic.css');
