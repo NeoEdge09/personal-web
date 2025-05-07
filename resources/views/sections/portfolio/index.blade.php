@@ -1,788 +1,171 @@
-    <section class="portfolio-section section-block" id="portfolio-section">
-        <div class="section-title">
-            <h2>Portfolio</h2>
-            <p class="lead">
-                Duis aute irure dolor in reprehen pteur sint
-                occaecat cupidatat non proident, sunt in culim id
-                est.
-            </p>
+<section class="portfolio-section section-block " id="portfolio-section">
+    <div class="section-title">
+        <h2>Portfolio</h2>
+        <p class="lead">
+            Explore my creative work and professional projects
+        </p>
+    </div>
+    <!-- .section-title -->
+
+    <!-- Filter Buttons -->
+    <div class="button-group filter-button-group">
+        <button class="active" data-filter="*">All</button>
+        <button class="" data-filter=".web-development">Web Development</button>
+        <button class="" data-filter=".mobile-app">Mobile App</button>
+        <button class="" data-filter=".design">Design</button>
+        <button class="" data-filter=".other">Other</button>
+    </div>
+
+    <!-- Portfolio Grid -->
+    <div class="row grid" id="portfolio-grid" data-aos="fade-up" data-aos-duration="2000">
+        @include('sections.portfolio.items', ['portfolios' => $portfolios->take(6)]) </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="text-center d-none">
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
         </div>
-        <!-- .section-title -->
-        <div class="button-group filter-button-group">
-            <button class="active" data-filter="*">All</button>
-            <button class="" data-filter=".programming">
-                Programming
-            </button>
-            <button class="" data-filter=".development">
-                Development
-            </button>
-            <button class="" data-filter=".design">Design</button>
-            <button class="" data-filter=".application">
-                Application
-            </button>
+    </div>
+
+    <!-- Load More Button -->
+    @if ($portfolios->count() > 3)
+        <div class="text-center mt-5">
+            <button id="load-more" class="btn btn-main" data-offset="6">Load More</button>
         </div>
-        <div class="row grid" data-aos="fade-up" data-aos-duration="2000">
-            <div class="col-lg-4 col-md-6 grid-item programming">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-01.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Programming</span>
-                        <h3 class="title">
-                            Website design for Rainy Design
-                        </h3>
-                    </div>
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal6"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+    @endif
+</section>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Isotope for filtering
+        var $grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            layoutMode: 'fitRows'
+        });
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal6" tabindex="-1" aria-labelledby="portfolioModal6"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_1.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 grid-item development application">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-02.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Development</span>
-                        <h3 class="title">
-                            Come on babe light my fire
-                        </h3>
-                    </div>
+        // Filter items on button click
+        $('.filter-button-group').on('click', 'button', function() {
+            var filterValue = $(this).attr('data-filter');
+            $grid.isotope({
+                filter: filterValue
+            });
 
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal5"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+            // Toggle active class
+            $('.filter-button-group button').removeClass('active');
+            $(this).addClass('active');
+        });
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal5" tabindex="-1" aria-labelledby="portfolioModal5"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_2.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 grid-item application programming design">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-03.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Design</span>
-                        <h3 class="title">
-                            When the musics over turn off the light
-                        </h3>
-                    </div>
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal4"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+        // Initialize Swiper for each portfolio gallery
+        function initSwipers() {
+            // Find all swiper containers
+            document.querySelectorAll('.portfolio-swiper').forEach(function(swiperContainer) {
+                new Swiper(swiperContainer, {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                    breakpoints: {
+                        768: {
+                            slidesPerView: 3
+                        }
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    loop: true,
+                    autoplay: {
+                        delay: 3000,
+                        disableOnInteraction: false,
+                    },
+                });
+            });
+        }
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal4" tabindex="-1" aria-labelledby="portfolioModal4"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_3.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 grid-item design application">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-04.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Application</span>
-                        <h3 class="title">
-                            She's got a smile that seems to me
-                        </h3>
-                    </div>
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal3"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+        // Initialize GLightbox
+        function initGLightbox() {
+            const lightbox = GLightbox({
+                touchNavigation: true,
+                loop: true,
+                autoplayVideos: true
+            });
+        }
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal3" tabindex="-1" aria-labelledby="portfolioModal3"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_4.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 grid-item programming design">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-05.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Programming</span>
-                        <h3 class="title">
-                            So close no matter how far
-                        </h3>
-                    </div>
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal2"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+        // Initialize Swipers and GLightbox on page load
+        initSwipers();
+        initGLightbox();
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal2" tabindex="-1" aria-labelledby="portfolioModal2"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_5.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-6 grid-item development design">
-                <div class="box">
-                    <img src="image/portfolio/portfolio-item-06.jpg" alt="portfolio image" />
-                    <div class="box-content">
-                        <span class="category">Development</span>
-                        <h3 class="title">
-                            When you are stranger faces looks ugly
-                        </h3>
-                    </div>
-                    <div class="icon-box">
-                        <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal1"><i
-                                class="bi bi-plus-lg"></i></a>
-                    </div>
+        // Load More functionality with AJAX
+        $('#load-more').on('click', function() {
+            var $button = $(this);
+            var offset = parseInt($button.data('offset'));
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="portfolioModal1" tabindex="-1" aria-labelledby="portfolioModal1"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
-                            <div class="modal-content">
-                                <div class="modal-body">
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close">
-                                        <i class="bi bi-x"></i>
-                                    </button>
-                                    <div class="row item-content">
-                                        <div class="col-xl-12">
-                                            <img src="image/portfolio/portfolio_large_6.jpg" alt="portfolio image" />
-                                        </div>
-                                        <div class="col-xl-8">
-                                            <div class="content-wrapper">
-                                                <h2 class="item-title">
-                                                    Branding for ABC
-                                                    Corporation
-                                                </h2>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Lorem ipsum
-                                                    dolor sit amet,
-                                                    consectetur
-                                                    adipisicing
-                                                    elit, sed do
-                                                    eiusmod tempor
-                                                    incididunt ut
-                                                    labore et dolore
-                                                    magna aliqua. Ut
-                                                    enim ad minim
-                                                    veniam, quis
-                                                    nostrud
-                                                    exercitation
-                                                    ullamco laboris
-                                                    nisi ut aliquip
-                                                    ex ea commodo
-                                                    consequat.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                                <p>
-                                                    Duis aute irure
-                                                    dolor in
-                                                    reprehenderit in
-                                                    voluptate velit
-                                                    esse cillum
-                                                    dolore eu fugiat
-                                                    nulla pariatur.
-                                                    Excepteur sint
-                                                    occaecat
-                                                    cupidatat non
-                                                    proident, sunt
-                                                    in culpa qui
-                                                    officia deserunt
-                                                    mollit anim id
-                                                    est laborum.
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div class="col-xl-4">
-                                            <div class="meta-wrapper">
-                                                <ul class="item-meta">
-                                                    <li>
-                                                        Project
-                                                        Type:
-                                                        <span class="meta-value">Graphic
-                                                            Design</span>
-                                                    </li>
-                                                    <li>
-                                                        Client:
-                                                        <span class="meta-value">Juwel
-                                                            Khan</span>
-                                                    </li>
-                                                    <li>
-                                                        Duration:
-                                                        <span class="meta-value">2
-                                                            Weeks</span>
-                                                    </li>
-                                                    <li>
-                                                        Task:
-                                                        <span class="meta-value">UI/UX,
-                                                            Frontend</span>
-                                                    </li>
-                                                    <li>
-                                                        Budget:
-                                                        <span class="meta-value">$2000</span>
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                            <!-- .meta-wrapper -->
-                                        </div>
-                                    </div>
-                                    <!-- .row -->
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!-- .row -->
-    </section>
+            // Show loading indicator
+            $('#loading-indicator').removeClass('d-none');
+
+            // Disable button during loading
+            $button.prop('disabled', true);
+
+            // Make AJAX request to load more items
+            $.ajax({
+                url: '/load-more-portfolios/' + offset,
+                type: 'GET',
+                success: function(response) {
+                    // Hide loading indicator
+                    $('#loading-indicator').addClass('d-none');
+
+                    if (response.html) {
+                        // Append new items
+                        var $newItems = $(response.html);
+                        $('#portfolio-grid').append($newItems);
+
+                        // Update Isotope layout
+                        $grid.isotope('appended', $newItems);
+                        $grid.isotope('layout');
+
+                        // Initialize new Swipers for newly added items
+                        initSwipers();
+
+                        // Reinitialize GLightbox for new elements
+                        initGLightbox();
+
+                        // Update offset for next load
+                        $button.data('offset', offset + 3);
+
+                        // Hide button if no more items
+                        if (!response.hasMore) {
+                            $button.fadeOut();
+                        } else {
+                            $button.prop('disabled', false);
+                        }
+                    } else {
+                        // No more items, hide button
+                        $button.fadeOut();
+                    }
+                },
+                error: function() {
+                    // Hide loading indicator on error
+                    $('#loading-indicator').addClass('d-none');
+                    $button.prop('disabled', false);
+                    alert('Error loading more items. Please try again.');
+                }
+            });
+        });
+    });
+</script>
+<style>
+    #loading-indicator {
+        margin: 30px auto;
+    }
+
+    .spinner-border {
+        width: 3rem;
+        height: 3rem;
+        border-width: 0.25em;
+    }
+
+    .swiper-pagination-bullet-active {
+        background-color: var(--primary-color);
+    }
+</style>

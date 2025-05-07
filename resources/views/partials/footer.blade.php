@@ -9,21 +9,15 @@
                                 sunt in culd est laborum.
                             </p>
                             <ul class="list-inline footer-social">
-                                <li class="list-inline-item">
-                                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#"><i class="fab fa-twitter"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#"><i class="fab fa-linkedin"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#"><i class="fab fa-youtube"></i></a>
-                                </li>
-                                <li class="list-inline-item">
-                                    <a href="#"><i class="fab fa-instagram"></i></a>
-                                </li>
+                                @forelse($socialMedia as $social)
+                                    <li class="list-inline-item">
+                                        <a href="{{ $social->url }}" target="_blank" title="{{ $social->name }}">
+                                            <i class="{{ $social->icon }}"></i>
+                                        </a>
+                                    </li>
+                                @empty
+                                    <!-- No social links available -->
+                                @endforelse
                             </ul>
                         </div>
                     </div>
@@ -36,20 +30,12 @@
                 <div class="row footer-bottom">
                     <div class="col-md-6">
                         <p>
-                            All rights reserved &copy; 2023
-                            <strong>eThemeStudio</strong>
+                        <p>© {{ date('Y') }} {{ $siteSettings->site_name ?? 'Personal Web' }} - All rights reserved
+                        </p>
+
                         </p>
                     </div>
-                    <div class="col-md-6">
-                        <ul class="list-inline text-md-end">
-                            <li class="list-inline-item">
-                                <a href="#">Terms &amp; Condition</a>
-                            </li>
-                            <li class="list-inline-item">
-                                <a href="#">Privacy Policy</a>
-                            </li>
-                        </ul>
-                    </div>
+
                 </div>
                 <!-- .footer-bottom -->
             </footer>

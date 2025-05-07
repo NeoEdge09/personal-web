@@ -1,4 +1,4 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -6,6 +6,112 @@
 @source '../**/*.js';
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+
+    /* Light Mode Theme Colors */
+    --primary-color: v-bind("primary_color");
+    --secondary-color: v-bind("secondary_color");
+    --text-color: v-bind("text_color");
+    --heading-color: v-bind("heading_color");
+    --background-color: v-bind("background_color");
+}
+
+/* Base styles using theme variables */
+:root {
+    color-scheme: light dark;
+
+    /* Default fallback colors in case variables aren't loaded */
+    --primary-color: #adff00;
+    --secondary-color: #8acc00;
+    --text-color: #615978;
+    --heading-color: #222;
+    --background-color: #aab6c2;
+
+    /* Dark mode fallback colors */
+    --dark-primary-color: #adff00;
+    --dark-background-color: #31333c;
+}
+
+/* Light mode (default) */
+body {
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: var(--heading-color);
+}
+
+.bg-primary {
+    background-color: var(--primary-color);
+}
+
+.text-primary {
+    color: var(--primary-color);
+}
+
+.bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+.text-secondary {
+    color: var(--secondary-color);
+}
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: var(--heading-color);
+}
+
+.btn-secondary {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+/* Dark mode overrides */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --primary-color: v-bind("dark_mode_primary_color");
+        --background-color: v-bind("dark_mode_background_color");
+        --heading-color: #ffffff;
+        --text-color: #b0aac0;
+    }
+
+    body {
+        background-color: var(--background-color);
+        color: var(--text-color);
+    }
+
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
+        color: var(--heading-color);
+    }
+}
+
+/* Helper classes for theme colors */
+.theme-bg-primary {
+    background-color: var(--primary-color);
+}
+
+.theme-bg-secondary {
+    background-color: var(--secondary-color);
+}
+
+.theme-text-primary {
+    color: var(--primary-color);
+}
+
+.theme-text-secondary {
+    color: var(--secondary-color);
 }

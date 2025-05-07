@@ -21,7 +21,15 @@ class SocialMediaResource extends Resource
     protected static ?string $navigationLabel = 'Social Media';
     protected static ?string $navigationGroup = 'Website Settings';
     protected static ?int $navigationSort = 3;
+    protected static function afterSave(): void
+    {
+        cache()->forget('social_media_active');
+    }
 
+    protected static function afterDelete(): void
+    {
+        cache()->forget('social_media_active');
+    }
     public static function form(Form $form): Form
     {
         return $form

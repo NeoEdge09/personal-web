@@ -3,10 +3,11 @@
         <div class="container">
             <a class="navbar-brand" href="index.html"><img class="img-fluid" src="image/fungi_logo.png"
                     alt="fungi logo" /></a>
-
             <!-- download button -->
-            <a class="btn btn-main header-btn ms-auto d-xl-none" href="#">Download CV</a>
-
+            @if (isset($about) && $about && $about->cv)
+                <a class="btn btn-main header-btn ms-auto d-xl-none" href="{{ asset('storage/' . $about->cv) }}"
+                    target="_blank">Download CV</a>
+            @endif
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -26,10 +27,6 @@
                                 class="pe-7s-portfolio"></i><span>Portfolio</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#service-section"><i class="pe-7s-config"></i><span>Service</span></a>
-                    </li>
-
-                    <li class="nav-item">
                         <a class="nav-link" href="#blog-section"><i class="pe-7s-news-paper"></i><span>Blog</span></a>
                     </li>
                     <li class="nav-item">
@@ -39,28 +36,27 @@
                 </ul>
                 <!-- .navbar-nav -->
                 <ul class="nav-social">
-                    <li class="facebook-link">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    </li>
-                    <li class="twitter-link">
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                    </li>
-                    <li class="linkedin-link">
-                        <a href="#"><i class="fab fa-linkedin"></i></a>
-                    </li>
-                    <li class="instagram-link">
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li class="tiktok-link">
-                        <a href="#"><i class="fab fa-tiktok"></i></a>
-                    </li>
+                    @forelse(isset($socialMedia) && $socialMedia ? $socialMedia : [] as $social)
+                        <li class="{{ $social->platform ?? '' }}">
+                            <a href="{{ $social->url ?? '#' }}" target="_blank" title="{{ $social->name ?? '' }}">
+                                <i class="{{ $social->icon ?? 'bi bi-question' }}"></i>
+                            </a>
+                        </li>
+                    @empty
+                        <li class="no-social">
+                            <span>No social media links available</span>
+                        </li>
+                    @endforelse
                 </ul>
                 <!-- .hero-social -->
             </div>
             <!-- .collapse -->
 
             <!-- download button -->
-            <a class="btn btn-main header-btn d-none d-xl-flex" href="#">Download CV</a>
+            @if (isset($about) && $about && $about->cv)
+                <a class="btn btn-main header-btn d-none d-xl-flex" href="{{ asset('storage/' . $about->cv) }}"
+                    target="_blank">Download CV</a>
+            @endif
         </div>
         <!-- .container -->
     </nav>
