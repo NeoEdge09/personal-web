@@ -21,7 +21,6 @@ return new class extends Migration
             $table->json('tags')->nullable();
             $table->foreignId('author_id')->constrained('users')->onDelete('cascade');
             $table->enum('status', ['draft', 'published'])->default('draft');
-            $table->timestamp('published_at')->nullable();
 
             // SEO Fields
             $table->string('seo_title')->nullable();

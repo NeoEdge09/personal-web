@@ -7,7 +7,7 @@
     <!-- .hero-area -->
 
     <!-- ABOUT SECTION -->
-    {{-- @include('sections.about.index') --}}
+    @include('sections.about.index')
     <!-- .about-section -->
 
     <!-- SKILL SECTION -->
@@ -15,11 +15,11 @@
     <!-- .skill-section -->
 
     <!-- PORTFOLIO SECTION -->
-    {{-- @include('sections.portfolio.index') --}}
+    @include('sections.portfolio.index')
     <!-- .portfolio-section -->
 
     <!-- SERVICE SECTION -->
-    @include('sections.services.index')
+    {{-- @include('sections.services.index') --}}
     <!-- .service-section -->
 
     <!-- RESUME SECTION -->
@@ -27,7 +27,7 @@
     <!-- .resume-section -->
 
     <!-- BLOG SECTION -->
-    {{-- @include('sections.blog.index') --}}
+    @include('sections.blog.index')
     <!-- .blog-section -->
 
     <!-- CONTACT SECTION -->

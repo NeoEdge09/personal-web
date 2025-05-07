@@ -18,17 +18,8 @@ return new class extends Migration
             $table->string('favicon')->nullable();
             $table->string('logo')->nullable();
             $table->text('description')->nullable();
+            $table->json('themes')->nullable();
 
-            // Color settings
-            $table->string('primary_color')->nullable()->default('#adff00');
-            $table->string('secondary_color')->nullable()->default('#8acc00');
-            $table->string('text_color')->nullable()->default('#615978');
-            $table->string('heading_color')->nullable()->default('#222');
-            $table->string('background_color')->nullable()->default('#aab6c2');
-
-            // Dark mode colors
-            $table->string('dark_mode_primary_color')->nullable()->default('#adff00');
-            $table->string('dark_mode_background_color')->nullable()->default('#31333c');
 
             $table->timestamps();
         });

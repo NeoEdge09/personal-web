@@ -51,56 +51,41 @@ class SiteSettingResource extends Resource
                     ])
                     ->columns(1),
 
-                Forms\Components\Section::make('Color Settings')
+                Forms\Components\Section::make('Theme Selection')
                     ->schema([
-                        Forms\Components\Grid::make(2)
-                            ->schema([
-                                Forms\Components\Section::make('Light Mode Colors')
-                                    ->schema([
-                                        Forms\Components\ColorPicker::make('primary_color')
-                                            ->label('Primary Color')
-                                            ->default('#adff00')
-                                            ->helperText('Used for buttons, links, and highlighted elements'),
+                        Forms\Components\Hidden::make('themes'),
 
-                                        Forms\Components\ColorPicker::make('secondary_color')
-                                            ->label('Secondary Color')
-                                            ->default('#8acc00')
-                                            ->helperText('Used for hover states and secondary elements'),
+                        Forms\Components\Select::make('selected_theme')
+                            ->label('Choose Website Theme')
+                            ->options(function () {
+                                $model = new SiteSetting();
+                                $templates = $model->getThemeTemplates();
+                                return collect($templates)->pluck('name', 'name')->toArray();
+                            })
+                            ->default('Modern Purple')
+                            ->required()
+                            ->reactive()
+                            ->afterStateUpdated(function (string $state, callable $set) {
+                                // Get theme templates
+                                $model = new SiteSetting();
+                                $templates = $model->getThemeTemplates();
+                                $selectedTemplate = collect($templates)->firstWhere('name', $state);
 
-                                        Forms\Components\ColorPicker::make('text_color')
-                                            ->label('Text Color')
-                                            ->default('#615978')
-                                            ->helperText('Main text color'),
+                                if ($selectedTemplate) {
+                                    $selectedTemplate['is_active'] = true;
+                                    // Set the themes field directly as an array with only the selected theme
+                                    $set('themes', [$selectedTemplate]);
+                                }
+                            })
+                            ->dehydrated(false), // This field won't be submitted to the database directly
 
-                                        Forms\Components\ColorPicker::make('heading_color')
-                                            ->label('Heading Color')
-                                            ->default('#222')
-                                            ->helperText('Used for headings (h1-h6)'),
-
-                                        Forms\Components\ColorPicker::make('background_color')
-                                            ->label('Background Color')
-                                            ->default('#aab6c2')
-                                            ->helperText('Main background color'),
-                                    ])
-                                    ->columns(1),
-
-                                Forms\Components\Section::make('Dark Mode Colors')
-                                    ->schema([
-                                        Forms\Components\ColorPicker::make('dark_mode_primary_color')
-                                            ->label('Dark Mode Primary Color')
-                                            ->default('#adff00')
-                                            ->helperText('Primary color in dark mode'),
-
-                                        Forms\Components\ColorPicker::make('dark_mode_background_color')
-                                            ->label('Dark Mode Background Color')
-                                            ->default('#31333c')
-                                            ->helperText('Background color in dark mode'),
-                                    ])
-                                    ->columns(1),
-                            ]),
+                        Forms\Components\View::make('filament.forms.components.theme-preview')
+                            ->visible(fn($get) => !empty($get('selected_theme')))
                     ])
+                    ->columns(1)
                     ->collapsible(),
-            ]);
+            ])
+            ->statePath('data');
     }
 
     public static function table(Table $table): Table
@@ -112,10 +97,9 @@ class SiteSettingResource extends Resource
                     ->sortable(),
                 Tables\Columns\ImageColumn::make('logo')
                     ->circular(),
-                Tables\Columns\ColorColumn::make('primary_color')
-                    ->label('Primary Color'),
-                Tables\Columns\ColorColumn::make('dark_mode_background_color')
-                    ->label('Dark Background'),
+                Tables\Columns\ViewColumn::make('themes')
+                    ->label('Active Theme')
+                    ->view('filament.tables.columns.active-theme'),
                 Tables\Columns\TextColumn::make('updated_at')
                     ->dateTime()
                     ->sortable(),

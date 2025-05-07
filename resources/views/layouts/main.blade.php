@@ -35,6 +35,8 @@
     <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
     <link rel="stylesheet" href="{{ route('dynamic.css') }}">
     <title>@yield('title', $siteSettings->site_name ?? 'Personal Web')</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#site-navbar" class="home-vcard">
@@ -61,7 +63,7 @@
         <!-- .box-wrapper -->
     </div>
     <!-- .container -->
-
+    <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js"></script>
     <script src="{{ asset('assets/js/jquery.js') }}"></script>
     <script src="{{ asset('assets/js/popper.min.js') }}"></script>
     <script src="{{ asset('assets/js/bootstrap.min.js') }}"></script>

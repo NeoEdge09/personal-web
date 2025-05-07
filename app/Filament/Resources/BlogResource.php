@@ -5,6 +5,7 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\BlogResource\Pages;
 use App\Filament\Resources\BlogResource\RelationManagers\CommentsRelationManager;
 use App\Models\Blog;
+use Filament\Facades\Filament;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -62,6 +63,7 @@ class BlogResource extends Resource
                                     ->fileAttachmentsDirectory('blog/content'),
 
                                 Forms\Components\TagsInput::make('tags')
+                                    ->required()
                                     ->separator(','),
                             ]),
 
@@ -84,10 +86,15 @@ class BlogResource extends Resource
 
                         Forms\Components\Tabs\Tab::make('Publishing')
                             ->schema([
-                                Forms\Components\Select::make('author_id')
-                                    ->relationship('author', 'name')
-                                    ->searchable()
-                                    ->required(),
+                                Forms\Components\Hidden::make('author_id')
+                                    ->default(fn() => Filament::auth()->id())
+                                    ->dehydrated(),
+
+                                Forms\Components\TextInput::make('author_name')
+                                    ->label('Author')
+                                    ->default(fn() => Filament::auth()->user()->name)
+                                    ->disabled()
+                                    ->dehydrated(false),
 
                                 Forms\Components\Select::make('status')
                                     ->options([
@@ -97,15 +104,8 @@ class BlogResource extends Resource
                                     ->default('draft')
                                     ->required()
                                     ->live()
-                                    ->afterStateUpdated(fn($state, Forms\Set $set) =>
-                                    $state === 'published' && ! $set('published_at')
-                                        ? $set('published_at', now())
-                                        : null),
 
-                                Forms\Components\DateTimePicker::make('published_at')
-                                    ->label('Publish Date')
-                                    ->visible(fn(Forms\Get $get): bool => $get('status') === 'published')
-                                    ->default(now()),
+
                             ]),
                     ])
                     ->columnSpanFull(),
@@ -143,9 +143,6 @@ class BlogResource extends Resource
                     ->numeric()
                     ->sortable(),
 
-                Tables\Columns\TextColumn::make('published_at')
-                    ->dateTime()
-                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
@@ -176,23 +173,6 @@ class BlogResource extends Resource
                 Tables\Filters\SelectFilter::make('author_id')
                     ->relationship('author', 'name')
                     ->label('Author'),
-
-                Tables\Filters\Filter::make('published_at')
-                    ->form([
-                        Forms\Components\DatePicker::make('published_from'),
-                        Forms\Components\DatePicker::make('published_until'),
-                    ])
-                    ->query(function (Builder $query, array $data): Builder {
-                        return $query
-                            ->when(
-                                $data['published_from'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '>=', $date),
-                            )
-                            ->when(
-                                $data['published_until'],
-                                fn(Builder $query, $date): Builder => $query->whereDate('published_at', '<=', $date),
-                            );
-                    }),
             ])
             ->actions([
                 Tables\Actions\EditAction::make(),
@@ -205,7 +185,6 @@ class BlogResource extends Resource
                     ->action(function (Blog $record) {
                         $record->update([
                             'status' => 'published',
-                            'published_at' => $record->published_at ?? now(),
                         ]);
                     }),
 
@@ -227,7 +206,6 @@ class BlogResource extends Resource
                             $records->each(function ($record) {
                                 $record->update([
                                     'status' => 'published',
-                                    'published_at' => $record->published_at ?? now(),
                                 ]);
                             });
                         }),
@@ -243,9 +221,7 @@ class BlogResource extends Resource
 
     public static function getRelations(): array
     {
-        return [
-            CommentsRelationManager::class,
-        ];
+        return [];
     }
 
     public static function getPages(): array

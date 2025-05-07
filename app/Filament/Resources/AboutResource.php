@@ -66,7 +66,6 @@ class AboutResource extends Resource
                             ->defaultItems(2)
                     ])
                     ->collapsible(),
-
                 Forms\Components\Section::make('Contact Information')
                     ->schema([
                         Forms\Components\TextInput::make('email')
@@ -88,8 +87,7 @@ class AboutResource extends Resource
                         Forms\Components\Select::make('freelance_status')
                             ->options([
                                 'available' => 'Available',
-                                'busy' => 'Busy',
-                                'not-available' => 'Not Available',
+                                'unavailable' => 'Unavailable',
                             ])
                             ->required(),
                     ])
