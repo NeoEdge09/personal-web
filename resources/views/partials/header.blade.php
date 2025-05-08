@@ -1,8 +1,8 @@
 <header class="site-header" id="site-header">
     <nav class="navbar navbar-expand-xl" id="site-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img class="img-fluid" src="image/fungi_logo.png"
-                    alt="fungi logo" /></a>
+            <a class="navbar-brand" href="index.html"><img class="img-fluid" src="image/personal_logo.png"
+                    alt="personal logo" /></a>
             <!-- download button -->
             @if (isset($about) && $about && $about->cv)
                 <a class="btn btn-main header-btn ms-auto d-xl-none" href="{{ asset('storage/' . $about->cv) }}"

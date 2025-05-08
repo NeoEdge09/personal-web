@@ -2,7 +2,7 @@
                 <div class="footer-main">
                     <div class="row align-items-center justify-content-center">
                         <div class="col-lg-6 text-center branding-block">
-                            <a class="footer-brand" href="#"><img src="image/fungi_logo.png" alt="Pori logo" /></a>
+                            <a class="footer-brand" href="#"><img src="image/personal_logo.png" alt="Pori logo" /></a>
                             <p>
                                 Kilaboris nisi ut aliquip ex ea commodo
                                 consequat uis aute cupidatat non proident

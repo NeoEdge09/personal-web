@@ -64,14 +64,8 @@
 </section>
 
 <style>
-    /* Dark UI styling for resume section */
     .resume-section {
-        background-color: #212228;
-        color: #b0aac0;
-        padding-bottom: 80px;
-        border-radius: 18px;
-        position: relative;
-        z-index: 1;
+        background-color: var(--dark-mode-background);
     }
 
     .resume-section:after {
@@ -121,7 +115,7 @@
         color: var(--primary-color);
         font-size: 70%;
         float: right;
-        background: rgba(173, 255, 0, 0.2);
+        background: var(--background-color);
         padding: 3px 10px;
         border-radius: 4px;
     }
@@ -138,9 +132,10 @@
     }
 
     .resume-section .icon-box {
-        background-color: rgba(173, 255, 0, 0.2);
+        background: var(--background-color);
         color: var(--primary-color);
-        border: 2px solid rgba(173, 255, 0, 0.3);
+        border: 2px solid var(--background-color);
+
         box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
         transition: all 0.3s ease;
     }

@@ -1,4 +1,3 @@
-<!-- filepath: c:\laragon\www\personal-web\resources\views\sections\portfolio\items.blade.php -->
 @foreach ($portfolios as $portfolio)
     <div class="col-lg-4 col-md-6 grid-item py-4 {{ $portfolio->category }}">
         <div class="box">
@@ -14,7 +13,7 @@
             </div>
 
             <!-- Modal -->
-            <div class="modal fade" id="portfolioModal{{ $portfolio->id }}" tabindex="-1"
+            <div class="modal fade " id="portfolioModal{{ $portfolio->id }}" tabindex="-1"
                 aria-labelledby="portfolioModal{{ $portfolio->id }}" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
                     <div class="modal-content">
