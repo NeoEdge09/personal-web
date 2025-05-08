@@ -9,6 +9,7 @@
             </div>
             <div class="icon-box">
                 <a href="#" data-bs-toggle="modal" data-bs-target="#portfolioModal{{ $portfolio->id }}">
+                    <i class="bi bi-plus"></i>
                 </a>
             </div>
 

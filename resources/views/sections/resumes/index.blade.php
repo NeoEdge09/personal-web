@@ -21,7 +21,7 @@
                             <div class="content-wrapper">
                                 <h4>
                                     {{ $education['title'] }}
-                                    <span class="ms-1">{{ $education['year'] }}</span>
+                                    <span class="ms-1" style="color: #bdb9cb;">{{ $education['year'] }}</span>
                                 </h4>
                                 <h5>{{ $education['school'] }}</h5>
                                 <p>
@@ -47,7 +47,7 @@
                             <div class="content-wrapper">
                                 <h4>
                                     {{ $experience['title'] }}
-                                    <span class="ms-1">{{ $experience['year'] }}</span>
+                                    <span class="ms-1" style="color: #bdb9cb;">{{ $experience['year'] }}</span>
                                 </h4>
                                 <h5>{{ $experience['company'] }}</h5>
                                 <p>
