@@ -13,7 +13,7 @@
             <h2>
                 <span>About Me</span>{{ $about->main_title ?? '' }}
             </h2>
-            <p>{{ $about->desc ?? 'Information not available.' }}</p>
+            <p style="color:#fff;">{{ $about->desc ?? 'Information not available.' }}</p>
             <div class="personal-details row">
                 <div class="col-md-6">
                     <ul class="personal-info">

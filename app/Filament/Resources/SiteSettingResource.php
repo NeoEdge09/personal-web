@@ -50,40 +50,41 @@ class SiteSettingResource extends Resource
                             ->maxLength(1000),
                     ])
                     ->columns(1),
-
-                Forms\Components\Section::make('Theme Selection')
+                Forms\Components\Section::make('Theme Settings')
                     ->schema([
-                        Forms\Components\Hidden::make('themes'),
-
-                        Forms\Components\Select::make('selected_theme')
+                        Forms\Components\Select::make('active_theme')
                             ->label('Choose Website Theme')
                             ->options(function () {
                                 $model = new SiteSetting();
                                 $templates = $model->getThemeTemplates();
                                 return collect($templates)->pluck('name', 'name')->toArray();
                             })
-                            ->default('Modern Purple')
+                            ->default(function (?SiteSetting $record) {
+                                if (!$record) return null;
+                                return $record->activeTheme['name'] ?? null;
+                            })
                             ->required()
                             ->reactive()
                             ->afterStateUpdated(function (string $state, callable $set) {
-                                // Get theme templates
                                 $model = new SiteSetting();
                                 $templates = $model->getThemeTemplates();
-                                $selectedTemplate = collect($templates)->firstWhere('name', $state);
 
-                                if ($selectedTemplate) {
-                                    $selectedTemplate['is_active'] = true;
-                                    // Set the themes field directly as an array with only the selected theme
-                                    $set('themes', [$selectedTemplate]);
-                                }
-                            })
-                            ->dehydrated(false), // This field won't be submitted to the database directly
+                                // Create a new array of templates with the selected one marked active
+                                $updatedTemplates = collect($templates)->map(function ($template) use ($state) {
+                                    $template['is_active'] = ($template['name'] === $state);
+                                    return $template;
+                                })->toArray();
 
-                        Forms\Components\View::make('filament.forms.components.theme-preview')
-                            ->visible(fn($get) => !empty($get('selected_theme')))
+                                // Set the full theme configuration
+                                $set('themes', $updatedTemplates);
+                            }),
+                        \Filament\Forms\Components\ViewField::make('theme_preview')
+                            ->view('filament.forms.components.color-palette-preview')
+                            ->label('Theme Colors Preview')
+                            ->statePath('themes')
+                            ->columnSpanFull(),
                     ])
-                    ->columns(1)
-                    ->collapsible(),
+                    ->columns(1),
             ])
             ->statePath('data');
     }

@@ -11,7 +11,7 @@
                 @endif
                 <!-- .image-wrapper -->
                 <h1 class="hero-head mb-3">
-                    <small class="d-block text-muted mb-2">Hello There, I'm</small>
+                    <small class="d-block mb-2" style="color: #bdb9cb;">Hello There, I'm</small>
                     @php
                         $name = $about->name ?? '';
                         $nameArray = explode(' ', $name);

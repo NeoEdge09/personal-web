@@ -136,24 +136,7 @@ class DynamicStyleController extends Controller
                 border-color: var(--primary-color);
             }
             
-            /* Dark mode overrides */
-            @media (prefers-color-scheme: dark) {
-                :root {
-                    --primary-color: {$darkPrimaryColor};
-                    --background-color: {$darkBackgroundColor};
-                    --heading-color: #ffffff;
-                    --text-color: #b0aac0;
-                }
-                
-                body {
-                    background-color: var(--background-color);
-                    color: var(--text-color);
-                }
-                
-                h1, h2, h3, h4, h5, h6 {
-                    color: var(--heading-color);
-                }
-            }
+           
         ";
 
         return $css;

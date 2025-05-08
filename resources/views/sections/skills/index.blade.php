@@ -1,4 +1,3 @@
-<!-- filepath: c:\laragon\www\personal-web\resources\views\sections\skills\index.blade.php -->
 <section class="skill-section section-block" id="skill-section">
     <div class="section-title">
         <h2>My Skills</h2>
@@ -48,7 +47,6 @@
 </section>
 
 <style>
-    /* Complementary styles to match with your main style.css */
     .skills-swiper {
         padding: 20px 50px 60px;
         overflow: hidden;

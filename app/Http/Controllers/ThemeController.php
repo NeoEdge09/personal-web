@@ -43,11 +43,14 @@ class ThemeController extends Controller
         return <<<CSS
 /* Auto-generated theme CSS */
 :root {
+    /* Brand colors */
     --primary-color: {$primaryColor};
     --secondary-color: {$secondaryColor};
     --text-color: {$textColor};
     --heading-color: {$headingColor};
     --background-color: {$backgroundColor};
+    --dark-mode-primary: {$darkPrimaryColor};
+    --dark-mode-background: {$darkBackgroundColor};
 }
 
 /* Light mode (default) */
@@ -60,57 +63,7 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--heading-color);
 }
 
-.bg-primary, .btn-primary, .theme-bg-primary {
-    background-color: var(--primary-color) !important;
-}
 
-.text-primary, .theme-text-primary {
-    color: var(--primary-color) !important;
-}
-
-.bg-secondary, .btn-secondary, .theme-bg-secondary {
-    background-color: var(--secondary-color) !important;
-}
-
-.text-secondary, .theme-text-secondary {
-    color: var(--secondary-color) !important;
-}
-
-.btn-primary {
-    border-color: var(--primary-color);
-}
-
-.btn-secondary {
-    border-color: var(--secondary-color);
-}
-
-/* Custom theme elements */
-.about-social li a:hover {
-    color: var(--primary-color);
-}
-
-.services-item, .portfolio-thumbnail, .blog-item {
-    border-color: var(--primary-color);
-}
-
-/* Dark mode overrides */
-@media (prefers-color-scheme: dark) {
-    :root {
-        --primary-color: {$darkPrimaryColor};
-        --background-color: {$darkBackgroundColor};
-        --heading-color: #ffffff;
-        --text-color: #b0aac0;
-    }
-    
-    body {
-        background-color: var(--background-color);
-        color: var(--text-color);
-    }
-    
-    h1, h2, h3, h4, h5, h6 {
-        color: var(--heading-color);
-    }
-}
 CSS;
     }
 
