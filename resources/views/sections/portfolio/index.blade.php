@@ -10,10 +10,18 @@
     <!-- Filter Buttons -->
     <div class="button-group filter-button-group">
         <button class="active" data-filter="*">All</button>
-        <button class="" data-filter=".web-development">Web Development</button>
+        {{-- <button class="" data-filter=".web-development">Web Development</button>
         <button class="" data-filter=".mobile-app">Mobile App</button>
-        <button class="" data-filter=".design">Design</button>
+        <button class="" data-filter=".design">Design</button> --}}
+        <button class="" data-filter=".media-relations">Media Relations</button>
+        <button class="" data-filter=".event-management">Event Management</button>
+        <button class="" data-filter=".social-media">Social Media</button>
+        <button class="" data-filter=".content-creation">Content Creation</button>
+        <button class="" data-filter=".branding">Branding</button>
+        <button class="" data-filter=".csr">CSR</button>
+        <button class="" data-filter=".public-speaking-&-mc">Public Speaking & MC</button>
         <button class="" data-filter=".other">Other</button>
+
     </div>
 
     <!-- Portfolio Grid -->
@@ -83,12 +91,25 @@
             });
         }
 
-        // Initialize GLightbox
+        let lightboxInstance;
+
         function initGLightbox() {
-            const lightbox = GLightbox({
+            if (lightboxInstance) {
+                lightboxInstance.destroy();
+            }
+
+            lightboxInstance = GLightbox({
+                selector: '.glightbox', // Make sure this matches your HTML elements
                 touchNavigation: true,
                 loop: true,
-                autoplayVideos: true
+                autoplayVideos: true,
+                moreText: 'View more',
+                touchFollowAxis: true, // Better touch handling for mobile
+                draggable: true,
+                // Improve mobile experience
+                descPosition: 'bottom',
+                width: '90vw', // Responsive width for mobile
+                height: 'auto'
             });
         }
 

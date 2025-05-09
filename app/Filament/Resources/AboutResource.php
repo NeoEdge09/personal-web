@@ -39,15 +39,12 @@ class AboutResource extends Resource
                             ->maxLength(1000),
                         Forms\Components\FileUpload::make('image')
                             ->image()
-                            ->directory('about')
                             ->required(),
                         Forms\Components\FileUpload::make('image_2')
                             ->image()
-                            ->directory('about')
                             ->nullable(),
                         Forms\Components\FileUpload::make('cv')
                             ->acceptedFileTypes(['application/pdf'])
-                            ->directory('cv')
                             ->nullable(),
                     ])
                     ->columns(2)
