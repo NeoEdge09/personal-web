@@ -21,8 +21,7 @@
                             <div class="content-wrapper">
                                 <h4>
                                     {{ $education['title'] }}
-                                    <span class="ms-1"
-                                        style="color: var(--background-color);">{{ $education['year'] }}</span>
+                                    <span class="ms-1" style="color:#fff">{{ $education['year'] }}</span>
                                 </h4>
                                 <h5>{{ $education['school'] }}</h5>
                                 <p>
@@ -48,8 +47,7 @@
                             <div class="content-wrapper">
                                 <h4>
                                     {{ $experience['title'] }}
-                                    <span class="ms-1"
-                                        style="color: var(--background-color);">{{ $experience['year'] }}</span>
+                                    <span class="ms-1" style="color: #fff">{{ $experience['year'] }}</span>
                                 </h4>
                                 <h5>{{ $experience['company'] }}</h5>
                                 <p>
