@@ -38,10 +38,21 @@ class PortfolioResource extends Resource
                             ->unique(ignoreRecord: true),
 
                         Forms\Components\Select::make('category')
+                            // ->options([
+                            //     'web-development' => 'Web Development',
+                            //     'mobile-app' => 'Mobile App',
+                            //     'design' => 'Design',
+                            //     'other' => 'Other',
+                            // ])
+
                             ->options([
-                                'web-development' => 'Web Development',
-                                'mobile-app' => 'Mobile App',
-                                'design' => 'Design',
+                                'media-relations' => 'Media Relations',
+                                'event-management' => 'Event Management',
+                                'content-creation' => 'Content Creation',
+                                'social-media' => 'Social Media',
+                                'branding' => 'Branding',
+                                'csr' => 'CSR',
+                                'public-speaking-&-mc' => 'Public Speaking & MC',
                                 'other' => 'Other',
                             ])
                             ->required(),
@@ -56,7 +67,6 @@ class PortfolioResource extends Resource
 
                         Forms\Components\FileUpload::make('featured_image')
                             ->image()
-                            ->directory('portfolio/featured')
                             ->required(),
                     ]),
 
@@ -65,7 +75,6 @@ class PortfolioResource extends Resource
                         Forms\Components\RichEditor::make('description')
                             ->required()
                             ->fileAttachmentsDisk('public')
-                            ->fileAttachmentsDirectory('portfolio/content'),
                     ]),
 
                 Forms\Components\Section::make('Gallery')
@@ -73,7 +82,6 @@ class PortfolioResource extends Resource
                         Forms\Components\FileUpload::make('gallery')
                             ->multiple()
                             ->image()
-                            ->directory('portfolio/gallery')
                             ->reorderable(),
                     ]),
             ]);

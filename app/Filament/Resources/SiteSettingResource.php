@@ -32,14 +32,12 @@ class SiteSettingResource extends Resource
                             ->maxLength(255),
                         Forms\Components\FileUpload::make('favicon')
                             ->image()
-                            ->directory('site-settings')
                             ->visibility('public')
                             ->imagePreviewHeight('150')
                             ->maxSize(1024)
                             ->nullable(),
                         Forms\Components\FileUpload::make('logo')
                             ->image()
-                            ->directory('site-settings')
                             ->visibility('public')
                             ->imagePreviewHeight('150')
                             ->maxSize(1024)

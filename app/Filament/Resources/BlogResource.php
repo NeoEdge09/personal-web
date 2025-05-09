@@ -54,7 +54,6 @@ class BlogResource extends Resource
 
                                 Forms\Components\FileUpload::make('featured_image')
                                     ->image()
-                                    ->directory('blog/featured')
                                     ->required(),
 
                                 Forms\Components\RichEditor::make('content')
