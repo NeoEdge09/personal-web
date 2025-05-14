@@ -9,11 +9,11 @@
                                 </a>
                             @else
                             @endif
-                            <p>
-                                Kilaboris nisi ut aliquip ex ea commodo
-                                consequat uis aute cupidatat non proident
-                                sunt in culd est laborum.
-                            </p>
+                            @if (isset($siteSettings) && $siteSettings && $siteSettings->description)
+                                <p>
+                                    {{ $siteSettings->description }}
+                                </p>
+                            @endif
                             <ul class="list-inline footer-social">
                                 @forelse($socialMedia as $social)
                                     <li class="list-inline-item">
