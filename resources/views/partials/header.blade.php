@@ -1,8 +1,11 @@
 <header class="site-header" id="site-header">
     <nav class="navbar navbar-expand-xl" id="site-navbar">
         <div class="container">
-            <a class="navbar-brand" href="index.html"><img class="img-fluid" src="image/personal_logo.png"
-                    alt="personal logo" /></a>
+            @if (isset($siteSettings) && $siteSettings && $siteSettings->logo)
+                <a class="navbar-brand" href="#site-header">
+                    <img src="{{ asset('storage/' . $siteSettings->logo) }}" alt="Logo" class="img-fluid">
+                </a>
+            @endif
             <!-- download button -->
             @if (isset($about) && $about && $about->cv)
                 <a class="btn btn-main header-btn ms-auto d-xl-none" href="{{ asset('storage/' . $about->cv) }}"

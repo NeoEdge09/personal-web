@@ -11,9 +11,14 @@
     @yield('meta_Share')
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="{{ asset('assets/image/favicon.ico') }}" type="image/x-icon" />
-    <link rel="icon" href="{{ asset('assets/image/favicon.ico') }}" type="image/x-icon" />
 
+    @if (isset($siteSettings) && $siteSettings && $siteSettings->favicon)
+        <link rel="icon" href="{{ asset('storage/' . $siteSettings->favicon) }}" type="image/x-icon" />
+        <link rel="shortcut icon" href="{{ asset('storage/' . $siteSettings->favicon) }}" type="image/x-icon" />
+    @else
+        <link rel="shortcut icon" href="{{ asset('assets/image/favicon.ico') }}" type="image/x-icon" />
+        <link rel="icon" href="{{ asset('assets/image/favicon.ico') }}" type="image/x-icon" />
+    @endif
     <!-- Icons -->
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pe-icon-7-stroke.css') }}" />
     <link rel="stylesheet" type="text/css" href="{{ asset('assets/css/pe-helper.css') }}" />
@@ -26,7 +31,6 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&amp;family=Poppins:wght@700;900&amp;display=swap"
         rel="stylesheet" />
-
     <!-- CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('assets/css/swiper-bundle.min.css') }}" />
@@ -36,7 +40,6 @@
     <link rel="stylesheet" href="{{ route('dynamic.css') }}">
     <title>@yield('title', $siteSettings->site_name ?? 'Personal Web')</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" />
-
 </head>
 
 <body data-bs-spy="scroll" data-bs-target="#site-navbar" class="home-vcard">
